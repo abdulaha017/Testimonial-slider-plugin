@@ -1,30 +1,34 @@
-$(document).ready(function(){
-    $("#testimonial-slider").owlCarousel({
-        items:1,
-        itemsDesktop:[1000,1],
-        itemsDesktopSmall:[979,1],
-        itemsTablet:[768,1],
-        pagination:true,
-        navigation:true,
-        navigationText:["",""],
-        slideSpeed:1000,
-        autoPlay:true
+;(function ($) {
+    "use strict";
+
+    $(document).ready(function(){
+
+        //ab-testimonial-style-one
+
+        $('.ab-one-slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            slide: true,
+            asNavFor: '.ab-one-slider-nav'
+        });
+
+        $('.ab-one-slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.ab-one-slider-for',
+            arrows: true,
+            dots: false,
+            focusOnSelect: true
+        });
+
+
+
+
+
+
+
+        
     });
 
-
-    $('.testimonials').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: false,
-        infinite: true,
-        cssEase: 'linear',
-        slide: 'li',
-        arrows: true,
-    });
-
-
-
-
-
-    
-});
+}) (jQuery);

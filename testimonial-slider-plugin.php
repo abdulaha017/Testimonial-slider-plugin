@@ -45,6 +45,8 @@ function ab_tes_register_script() {
     wp_register_style( 'slick-min-css', plugins_url('/assets/css/slick.min.css', __FILE__), false, '1.5.0', 'all');
 
 
+    wp_register_style( 'popper-css', plugins_url('/assets/css/popper.min.js', __FILE__), false, '1.12.9', 'all');
+    wp_register_style( 'bootstrap-css', plugins_url('/assets/css/bootstrap.min.css', __FILE__), false, '4.1.3', 'all');
     wp_register_style( 'style-css', plugins_url('/assets/css/style.css', __FILE__), false, '1.3.3', 'all');
 
 
@@ -63,6 +65,8 @@ function ab_tes_enqueue_style(){
     wp_enqueue_style('owl-theme-css');
     wp_enqueue_style('slick-theme-css');
     wp_enqueue_style('slick-min-css');
+    wp_enqueue_style('popper-css');
+    wp_enqueue_style('bootstrap-css');
     wp_enqueue_style('style-css');
 
     wp_enqueue_script( 'owl-carousel-min-js' );
@@ -205,17 +209,64 @@ add_action('save_post', 'ab_testimonial_post_save');
 
 
 
+function testimonial_style_one_func( $atts ) {
+
+    ob_start(); ?>
 
 
+    <!-- Testimonial Carousel -->
+    <div class="ab-one-testimonial-slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <?php
+                        $ab_testimonials = new WP_Query(array(
+                            'post_type'         => 'abtestimonial',
+                            'posts_per_page'    => -1
+                        ));
+                    ?>
+
+                    <div class="ab-one-slider slider ab-one-slider-for">
+                        <?php while($ab_testimonials->have_posts()) : $ab_testimonials->the_post(); ?>
+
+                        <article class="test-content">
+                            <?php the_content(); ?>
+                        </article>
+
+                        <?php endwhile; ?>
+                    </div>
+
+                    <div class="ab-one-slider slider ab-one-slider-nav">
+
+                    <?php while($ab_testimonials->have_posts()) : $ab_testimonials->the_post(); ?>
+
+                        <!-- Testimonial Image -->
+                        <figure class="image">
+                            <?php the_post_thumbnail( 'thumbnail', array( 'class' => 'img-fluid rounded-circle' ) ); ?>
+                            <div class="details">
+                                <h5> <?php the_title(); ?> </h5>
+                                <span class="info"> 
+                                <?php echo get_post_meta( get_the_id(), 'abt_company_name', true ); ?> /
+                                <?php echo get_post_meta( get_the_id(), 'abt_designation', true ); ?>
+                                </span>
+                            </div>
+                        </figure>
+                    <?php endwhile; ?>
+                    </div>
+
+        
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php 
+    return ob_get_clean();
 
 
-
-
-
-
-
-
-
+}
+add_shortcode( 'ab-testimonial-style-one', 'testimonial_style_one_func' );
 
 
 

@@ -1,193 +1,72 @@
-.demo{ background: #f8f7f6; }
-#testimonial-slider{
-    padding: 50px 20px 35px 20px;
+/* ab-testimonial-style-one */
+
+body{
+  background:#ccc;
+}
+.main {
+  font-family:Arial;
+  width:500px;
+  display:block;
+  margin:0 auto;
+}
+h3 {
     background: #fff;
-    text-align: center;
-    box-shadow: 0 0 115px 19px rgba(236, 236, 236, 1);
-}
-.testimonial .description{
-    font-size: 14px;
-    color: #777;
-    line-height: 26px;
-    text-indent: 30px;
+    color: #3498db;
+    font-size: 36px;
+    line-height: 100px;
+    margin: 10px;
+    padding: 2%;
     position: relative;
+    text-align: center;
 }
-.testimonial .description:before{
-    content: "\f10d";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    top: 0;
-    left: -15px;
-}
-.testimonial .title{
-    font-size: 24px;
-    font-weight: bold;
-    color: #363636;
-    text-transform: capitalize;
-    margin: 0;
-}
-.testimonial .post{
-    display: block;
-    font-size: 15px;
-    color: #363636;
-}
-.owl-buttons{
-    width: 100%;
-    height: 40px;
-    position: absolute;
-    bottom: 40%;
-    left: 0;
-}
-.owl-prev,
-.owl-next{
-    position: absolute;
-    left: 0;
-    transition: all 0.4s ease-in-out 0s;
-}
-.owl-next{
-    left: auto;
-    right: 0;
-}
-.owl-buttons .owl-prev:before,
-.owl-buttons .owl-next:before{
-    content: "\f104";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 60px;
-    font-weight: 900;
-    color: #cacaca;
-    line-height: 20px;
-    opacity: 0.8;
-}
-.owl-buttons .owl-next:before{
-    content: "\f105";
-}
-.owl-buttons .owl-prev:hover:before,
-.owl-buttons .owl-next:hover:before{
-    opacity: 1;
-}
-.owl-theme .owl-controls .owl-buttons div{
-    background: transparent;
-}
-.owl-theme .owl-controls{
-    margin-top: 40px;
-}
-.owl-theme .owl-controls .owl-page span{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 4px solid #ccc;
-    background: url("http://bestjquery.com/tutorial/testimonial/demo59/images/img-1.jpg") no-repeat;
-    background-size: cover;
-    transition: all 0.3s ease-in-out 0s;
-}
-.owl-theme .owl-controls .owl-page:nth-child(2) span{
-    background: url("http://bestjquery.com/tutorial/testimonial/demo59/images/img-2.jpg") no-repeat;
-    background-size: cover;
-}
-.owl-theme .owl-controls .owl-page:nth-child(3) span{
-    background: url("http://bestjquery.com/tutorial/testimonial/demo59/images/img-3.jpg") no-repeat;
-    background-size: cover;
-}
-.owl-theme .owl-controls.clickable .owl-page:hover span{
-    opacity: 0.5;
-}
-.owl-theme .owl-controls .owl-page.active span,
-.owl-theme .owl-controls .owl-page.active:hover span{
-    border-color: #d133ff;
-    opacity: 1;
-}
-@media only screen and (max-width: 479px){
-    .owl-buttons{ bottom: 30%; }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.testimonial-section{
-    background: url(https://cdn2.hubspot.net/hubfs/346178/Assets-Dec16/testimonial-bg.png) no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  table-layout: fixed;
-  padding:337px 0 100px;
-}
-
-.testimonials{
-  text-align:center; 
-  width:1118px;
-  margin:0 auto;
-  
-}
-.testimonial{
+.action{
+  display:block;
+  margin:100px auto;
   width:100%;
-  margin:0 auto;
   text-align:center;
 }
-.testimonial .details span{
+.action a {
   display:inline-block;
-  width:100%;
-  margin:0 auto;
-  text-align:center;
-  color: #FFFFFF;   font-family: Gibson;    font-size: 14px;    font-weight: 300;   letter-spacing: 1px;    line-height: 21px;  text-align: center;
+  padding:5px 10px; 
+  background:#f30;
+  color:#fff;
+  text-decoration:none;
 }
-.testimonial p{
-  max-width:770px;
-  margin:0 auto;
-  text-align:center;
-    color: #ECEEF4; font-family: Gibson;    font-size: 24px;    font-style: italic; font-weight: 300;   line-height: 48px;  text-align: center;
-  margin-bottom:45px;
-}
-.testimonial img{
-  text-align:center;
-  max-width:50px; 
-  margin:0 auto;
-  margin-bottom:10px
+.action a:hover{
+  background:#000;
 }
 
 
-.slick-prev:before {
-    width: 72px;
-    height: 72px;
-    background: url(//www.gobillable.com/2225413/Assets-2016/arrow-right-rollover-state.png) no-repeat;
-    position: absolute;
+
+
+.ab-one-slider-nav img {
     display: block;
-    cursor: pointer;
-    z-index: 1;
-    filter: grayscale(0);
-    -webkit-filter: grayscale();
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    transform-origin: 50% 25%;
+    width: 70px !important;
+    margin: 0 auto;
 }
 
-.slick-next:before {
-    width: 72px;
-    height: 72px;
-    background: url(http://www.gobillable.com/2225413/Assets-2016/arrow-right-rollover-state.png) no-repeat;
-    position: absolute;
-    display: block;
-    cursor: pointer;
-    z-index: 1;
-    filter: grayscale(0);
-    -webkit-transform: translate(0,-50%);
-    -ms-transform: translate(0,-50%);
-    transform: translate(0,-50%);  
-    transform-origin: 50% 25%;
+.ab-one-slider-nav .slick-track {
+    display: flex !important;
+    text-align: center;
 }
+
+.details {}
+
+.details h5 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 18px 0 5px !important;
+    line-height: 18px;
+}
+
+.details span.info {
+    font-size: 14px;
+}
+
+
+/* ab-testimonial-style-one */
+
+
+
+
+
