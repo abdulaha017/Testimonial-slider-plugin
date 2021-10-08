@@ -119,7 +119,7 @@ add_action( 'init', 'ab_tes_codex_testimonial_init' );
 
 function ab_testimonial_custom_box(){
     add_meta_box(
-        '_ab_testimonials_info',      // Unique ID
+        '_ab_testimonials_info',     // Unique ID
         'Additional Information',    // Box title
         'ab_testimonials_box_html',  // Content callback, must be of type callable
         'abtestimonial',             // Post type
@@ -132,13 +132,14 @@ add_action('add_meta_boxes', 'ab_testimonial_custom_box');
 
 function ab_testimonials_box_html($post){
 
-    // global $post;
+    global $post;
 
     // Use nonce for verification to secure data sending
-    // wp_nonce_field( basename( __FILE__ ), 'wpse_our_nonce' );
+    wp_nonce_field( plugin_basename( __FILE__ ), 'abt_meta_box_nonce' );
 
-    $ab_company_name = get_post_meta(get_the_id(), 'abt_company_name', true);
-    $ab_designation = get_post_meta(get_the_id(), 'abt_designation', true);
+
+    $ab_company_name = get_post_meta( $post->ID, 'abt_company_name', true );
+    $ab_designation = get_post_meta( $post->ID, 'abt_designation', true );
 
     ?>
 
@@ -167,13 +168,32 @@ function ab_testimonials_box_html($post){
 }
 
 function ab_testimonial_post_save($post_id) {
-    $ab_company_name = $_POST['abt_company_name'];
-    $ab_designation = $_POST['abt_designation'];
+
+    // Bail if we're doing an auto save
+    if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+
+    // if our nonce isn't there, or we can't verify it, bail
+    if( !isset( $_POST['abt_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['abt_meta_box_nonce'], plugin_basename( __FILE__ ) ) ) return;
+     
+    // if our current user can't edit this post, bail
+    if( !current_user_can( 'edit_post' ) ) return;
+
+
+    if(isset($_POST['abt_company_name'])) {
+        $ab_company_name = $_POST['abt_company_name'];
+    }
+    if(isset($_POST['abt_designation'])) {
+        $ab_designation = $_POST['abt_designation'];
+    }
+
+    // update company name
     update_post_meta(
         $post_id,
         'abt_company_name',
         $ab_company_name
     );
+
+    // update designation
     update_post_meta(
         $post_id,
         'abt_designation',
