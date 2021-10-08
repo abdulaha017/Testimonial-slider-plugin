@@ -130,12 +130,15 @@ function ab_testimonial_custom_box(){
 add_action('add_meta_boxes', 'ab_testimonial_custom_box');
 
 
-function ab_testimonials_box_html(){
+function ab_testimonials_box_html($post){
 
     // global $post;
 
     // Use nonce for verification to secure data sending
     // wp_nonce_field( basename( __FILE__ ), 'wpse_our_nonce' );
+
+    $ab_company_name = get_post_meta(get_the_id(), 'abt_company_name', true);
+    $ab_designation = get_post_meta(get_the_id(), 'abt_designation', true);
 
     ?>
 
@@ -146,7 +149,7 @@ function ab_testimonials_box_html(){
                     <label for="name">Company Name</label>
                 </td>
                 <td>
-                    <input type="text" class="widefat" name="abt_company_name" size="" value="" id="">
+                    <input type="text" class="widefat" name="abt_company_name" size="" value="<?php echo $ab_company_name; ?>" id="">
                 </td>
             </tr>
             <tr>
@@ -154,7 +157,7 @@ function ab_testimonials_box_html(){
                     <label for="email">Designation</label>
                 </td>
                 <td>
-                    <input type="text" class="widefat" name="abt_designation" size="" value="" id="">
+                    <input type="text" class="widefat" name="abt_designation" size="" value="<?php echo $ab_designation; ?>" id="">
                 </td>
             </tr>
         </tbody>
@@ -168,12 +171,12 @@ function ab_testimonial_post_save($post_id) {
     $ab_designation = $_POST['abt_designation'];
     update_post_meta(
         $post_id,
-        '_ab_testimonials_info',
+        'abt_company_name',
         $ab_company_name
     );
     update_post_meta(
         $post_id,
-        '_ab_testimonials_info',
+        'abt_designation',
         $ab_designation
     );
 }
@@ -193,117 +196,8 @@ add_action('save_post', 'ab_testimonial_post_save');
 
 
 
-function wporg_add_custom_box() {
-    $screens = [ 'post', 'wporg_cpt' ];
-    foreach ( $screens as $screen ) {
-        add_meta_box(
-            'wporg_box_id',                 // Unique ID
-            'Custom Meta Box Title',      // Box title
-            'wporg_custom_box_html',  // Content callback, must be of type callable
-            $screen                            // Post type
-        );
-    }
-}
-add_action( 'add_meta_boxes', 'wporg_add_custom_box' );
-
-
-//making the meta box (Note: meta box != custom meta field)
-function wpse_add_custom_meta_box_2() {
-   add_meta_box(
-       'custom_meta_box-2',       // $id
-       'Dauer2',                  // $title
-       'show_custom_meta_box_2',  // $callback
-       'abtestimonial',                 // $page
-       'normal',                  // $context
-       'high'                     // $priority
-   );
-}
-add_action('add_meta_boxes', 'wpse_add_custom_meta_box_2');
-
-
-
-
-//showing custom form fields
-function show_custom_meta_box_2() {
-    global $post;
-
-    // Use nonce for verification to secure data sending
-    wp_nonce_field( basename( __FILE__ ), 'wpse_our_nonce' );
-
-    ?>
-
-    <!-- my custom value input -->
-    <input type="text" name="wpse_value" value="">
-
-    <?php
-}
 
 
 
 
 
-
-
-
-
-
-
-
-/**
- * Setup query to show the ‘services’ post type with all posts filtered by 'home' category.
- * Output is linked title with featured image and excerpt.
- */
-   
-    // $args = array(  
-    //     'post_type' => 'services',
-    //     'post_status' => 'publish',
-    //     'posts_per_page' => -1, 
-    //     'orderby' => 'title', 
-    //     'order' => 'ASC',
-    //     'cat' => 'home',
-    // );
-
-    // $loop = new WP_Query( $args ); 
-        
-    // while ( $loop->have_posts() ) : $loop->the_post(); 
-    //     $featured_img = wp_get_attachment_image_src( $post->ID );
-    //     print the_title();
-    //     if ( $feature_img ) {
-    //        < img src="print $featured_img['url']" width=”print $featured_img['width']" height="print $featured_img['height']" />
-    //     }
-    //     the_excerpt(); 
-    // endwhile;
-
-    // wp_reset_postdata(); 
-
-
-
-// // [bartag foo="foo-value"]
-// function bartag_func( $atts ) {
-//     $a = shortcode_atts( array(
-//         'foo' => 'something',
-//         'bar' => 'something else',
-//     ), $atts );
-
-//     return "foo = {$a['foo']}";
-// }
-// add_shortcode( 'bartag', 'bartag_func' );
-
-
-// function query(){
-//     ob_start();
-
-//     $prefix = '_ab_prefix_';
-//     $ab_testimonials = new WP_Query(array(
-//         'post_type' => 'abtestimonial',
-//         'posts_per_page' -1
-//     ));
-
-//     while($ab_testimonials->have_posts()) : $ab_testimonials->the_post();
-//         ?>
-
-//     <?php
-
-//     endwhile;
-//     return ob_get_clean();
-// }
