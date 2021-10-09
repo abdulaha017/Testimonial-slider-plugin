@@ -221,39 +221,31 @@ function testimonial_style_one_func( $atts ) {
     <div class="ab-one-testimonial-slider">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8 offset-2">
 
                     <?php
                         $ab_testimonials = new WP_Query(array(
                             'post_type'         => 'abtestimonial',
-                            'posts_per_page'    => -1
+                            'posts_per_page'    => 3
                         ));
                     ?>
 
                     <div class="ab-one-slider slider ab-one-slider-for">
                         <?php while($ab_testimonials->have_posts()) : $ab_testimonials->the_post(); ?>
 
-                        <article class="test-content">
+                        <article class="test-item-content text-center">
                             <?php the_content(); ?>
+                            <span><?php the_title(); ?> - <?php echo get_post_meta( get_the_id(), 'abt_company_name', true ); ?>, <?php echo get_post_meta( get_the_id(), 'abt_designation', true ); ?></span>
                         </article>
 
                         <?php endwhile; ?>
                     </div>
 
-                    <div class="ab-one-slider slider ab-one-slider-nav">
+                    <div class="ab-one-slider slider ab-one-slider-nav ab-test-slider-nav text-center">
 
                     <?php while($ab_testimonials->have_posts()) : $ab_testimonials->the_post(); ?>
-
-                        <!-- Testimonial Image -->
                         <figure class="image">
                             <?php the_post_thumbnail( 'thumbnail', array( 'class' => 'img-fluid rounded-circle' ) ); ?>
-                            <div class="details">
-                                <h5> <?php the_title(); ?> </h5>
-                                <span class="info"> 
-                                <?php echo get_post_meta( get_the_id(), 'abt_company_name', true ); ?> /
-                                <?php echo get_post_meta( get_the_id(), 'abt_designation', true ); ?>
-                                </span>
-                            </div>
                         </figure>
                     <?php endwhile; ?>
                     </div>

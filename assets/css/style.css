@@ -41,15 +41,44 @@ h3 {
     background: #000;
 }
 
-.ab-one-slider-nav img {
-    display: block;
-    width: 70px !important;
+.ab-test-slider-nav {
+    width: 300px;
     margin: 0 auto;
 }
 
+.ab-one-slider-nav img {
+    display: block;
+    width: 70px !important;
+}
+
+.ab-one-slider-nav figure.image {
+    position: relative;
+    overflow: hidden;
+    margin: 0 5px;
+}
+
+.ab-one-slider-nav figure.image:after {
+    content: "";
+    position: absolute;
+    background: #222;
+    z-index: 29;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.ab-one-slider-nav figure.image.slick-center:after {
+    opacity: 0;
+}
+
+
 .ab-one-slider-nav .slick-track {
-    display: flex !important;
+    /*display: flex !important;*/
     text-align: center;
+    /*justify-content: space-around;*/
 }
 
 .ab-one-testimonial-slider article p {

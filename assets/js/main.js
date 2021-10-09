@@ -17,9 +17,10 @@
             slidesToShow: 3,
             slidesToScroll: 1,
             asNavFor: '.ab-one-slider-for',
-            arrows: true,
+            arrows: false,
             dots: false,
-            focusOnSelect: true
+            focusOnSelect: true,
+            centerMode: true,
         });
 
         //ab-testimonial-style-two
