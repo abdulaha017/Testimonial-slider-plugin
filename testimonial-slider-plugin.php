@@ -71,8 +71,8 @@ function ab_tes_enqueue_style(){
     wp_enqueue_style('bootstrap-css');
     wp_enqueue_style('style-css');
 
-    wp_enqueue_style('popper-js');
-    wp_enqueue_style('bootstrap-js');
+    wp_enqueue_script( 'popper-js' );
+    wp_enqueue_script( 'bootstrap-js' );
     wp_enqueue_script( 'owl-carousel-min-js' );
     wp_enqueue_script( 'slick-min-js' );
     wp_enqueue_script( 'main-js' );
